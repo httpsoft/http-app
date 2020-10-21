@@ -1,0 +1,60 @@
+{
+    "name": "httpsoft/http-app",
+    "description": "HTTP Software Application Template",
+    "keywords": ["php", "http", "psr-7", "psr-11", "psr-15", "app", "app-template", "project-template"],
+    "homepage": "https://httpsoft.org/",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgeniy Zyubin",
+            "email": "mail@devanych.ru",
+            "homepage": "https://devanych.ru/",
+            "role": "Founder and lead developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/httpsoft/http-app/issues",
+        "source": "https://github.com/httpsoft/http-app",
+        "docs": "https://httpsoft.org/docs/app"
+    },
+    "require": {
+        "php": "^7.4|^8.0",
+        "httpsoft/http-basis": "^1.0",
+        "devanych/di-container": "^2.1",
+        "monolog/monolog": "^2.1"
+    },
+    "require-dev": {
+        "filp/whoops": "^2.7",
+        "phpunit/phpunit": "^9.3",
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.5",
+        "symfony/var-dumper": "^5.1",
+        "vimeo/psalm": "^3.14"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "serve": "php -S 0.0.0.0:8080 -t public/",
+        "test": "phpunit --colors=always",
+        "static": "psalm",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "check": [
+            "@cs-check",
+            "@static",
+            "@test"
+        ]
+    }
+}

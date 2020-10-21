@@ -1,0 +1,8 @@
+.idea
+.vscode
+nbproject
+phpunit.xml
+/vendor
+/var/*
+!/var/README.md
+.phpunit.result.cache
