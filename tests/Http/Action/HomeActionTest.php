@@ -7,7 +7,7 @@ namespace Tests\Http\Action;
 use App\Http\Action\HomeAction;
 use HttpSoft\Message\ServerRequest;
 use HttpSoft\Response\JsonResponse;
-use Monolog\Test\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class HomeActionTest extends TestCase
 {

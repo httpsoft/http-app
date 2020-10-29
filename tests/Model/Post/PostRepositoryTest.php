@@ -7,7 +7,7 @@ namespace Tests\Model\Post;
 use App\Model\Post\Post;
 use App\Model\Post\PostRepository;
 use DateTimeImmutable;
-use Monolog\Test\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class PostRepositoryTest extends TestCase
 {
