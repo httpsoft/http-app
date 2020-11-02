@@ -18,10 +18,13 @@
         "source": "https://github.com/httpsoft/http-app",
         "docs": "https://httpsoft.org/docs/app"
     },
+    "config": {
+        "sort-packages": true
+    },
     "require": {
         "php": "^7.4|^8.0",
-        "httpsoft/http-basis": "^1.0",
         "devanych/di-container": "^2.1",
+        "httpsoft/http-basis": "^1.0",
         "monolog/monolog": "^2.1"
     },
     "require-dev": {
@@ -31,9 +34,6 @@
         "squizlabs/php_codesniffer": "^3.5",
         "symfony/var-dumper": "^5.1",
         "vimeo/psalm": "^3.14"
-    },
-    "config": {
-        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
@@ -46,6 +46,12 @@
         }
     },
     "scripts": {
+        "post-install-cmd": [
+            "@chmod-var"
+        ],
+        "post-update-cmd": [
+            "@chmod-var"
+        ],
         "serve": "php -S 0.0.0.0:8080 -t public/",
         "test": "phpunit --colors=always",
         "static": "psalm",
@@ -55,6 +61,7 @@
             "@cs-check",
             "@static",
             "@test"
-        ]
+        ],
+        "chmod-var": "php ./bin/chmod-var.php"
     }
 }
