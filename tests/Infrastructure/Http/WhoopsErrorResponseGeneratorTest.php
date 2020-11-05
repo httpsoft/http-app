@@ -33,13 +33,13 @@ class WhoopsErrorResponseGeneratorTest extends TestCase
         $handler = new JsonResponseHandler();
         $handler->addTraceToOutput(false);
 
-        $whops = new Run();
-        $whops->pushHandler($handler);
-        $whops->writeToOutput(false);
-        $whops->allowQuit(false);
-        $whops->register();
+        $whoops = new Run();
+        $whoops->pushHandler($handler);
+        $whoops->writeToOutput(false);
+        $whoops->allowQuit(false);
+        $whoops->register();
 
-        $generator = new WhoopsErrorResponseGenerator($whops);
+        $generator = new WhoopsErrorResponseGenerator($whoops);
         $exception = new ForbiddenHttpException();
         $response = $generator->generate($exception, new ServerRequest());
 
@@ -51,6 +51,7 @@ class WhoopsErrorResponseGeneratorTest extends TestCase
             'error' => [
                 'type' => get_class($exception),
                 'message' => $exception->getMessage(),
+                'code' => $exception->getCode(),
                 'file' => $exception->getFile(),
                 'line' => $exception->getLine(),
             ],
