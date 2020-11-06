@@ -22,7 +22,7 @@ The core of this application template is the [httpsoft/http-basis](https://githu
 This project template requires PHP version 7.4 or later.
 
 ```bash
-composer create-project --prefer-dist httpsoft/http-app <app-dir>
+composer create-project --prefer-dist --stability=dev httpsoft/http-app <app-dir>
 ```
 
 To verify the installation, go to `<app-dir>` and start the PHP built-in web server:
