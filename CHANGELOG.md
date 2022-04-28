@@ -1,5 +1,27 @@
 # HTTP App Change Log
 
+## 1.0.2 - 2022.04.28
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+-  Fixed path to composer autoload script in front-controller `public/index.php`.
+
 ## 1.0.1 - 2020.12.12
 
 ### Added
