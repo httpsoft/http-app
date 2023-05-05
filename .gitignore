@@ -1,6 +1,7 @@
 .idea
 .vscode
 nbproject
+psalm.xml
 phpunit.xml
 /vendor
 /var/*
