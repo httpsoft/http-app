@@ -1,5 +1,11 @@
 # HTTP App Change Log
 
+## 1.1.0 - 2023.05.05
+
+### Changed
+
+- [#4](https://github.com/httpsoft/http-app/pull/4) Rises `httpsoft/http-basis` package version to `^1.1`.
+
 ## 1.0.2 - 2022.04.28
 
 ### Added
