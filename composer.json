@@ -24,8 +24,8 @@
     "require": {
         "php": "^7.4|^8.0",
         "devanych/di-container": "^2.1",
-        "httpsoft/http-basis": "^1.0",
-        "monolog/monolog": "^2.3"
+        "httpsoft/http-basis": "^1.1",
+        "monolog/monolog": "^2.3|^3.3"
     },
     "require-dev": {
         "filp/whoops": "^2.15",
