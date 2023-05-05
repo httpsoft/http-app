@@ -20,7 +20,6 @@ final class LoggerFactory implements FactoryInterface
      * @psalm-suppress MixedArgument
      * @psalm-suppress MixedArrayAccess
      * @psalm-suppress MixedAssignment
-     * @psalm-suppress DeprecatedConstant
      */
     public function create(ContainerInterface $container): LoggerInterface
     {
