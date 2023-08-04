@@ -6,6 +6,7 @@ namespace App\Infrastructure;
 
 use Devanych\Di\FactoryInterface;
 use Exception;
+use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Container\ContainerInterface;
@@ -29,7 +30,7 @@ final class LoggerFactory implements FactoryInterface
 
         $logger->pushHandler(new StreamHandler(
             $config['log_file'],
-            $config['debug'] ? Logger::DEBUG : Logger::WARNING
+            $config['debug'] ? Level::Debug : Level::Warning
         ));
 
         return $logger;
