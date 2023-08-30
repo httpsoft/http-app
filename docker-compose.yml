@@ -1,0 +1,96 @@
+version: "3"
+
+services:
+
+  rib_nginx:
+    container_name: "rib_nginx"
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./.docker/nginx/Dockerfile
+    ports:
+      - 80:80
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www/rib/
+      - ./.docker/logs/nginx:/var/log/nginx/
+
+  rib_mariadb:
+    container_name: "rib_mariadb"
+    image: mariadb:11.0.2
+    volumes:
+      - ./.docker/database/${DB_NAME}:/var/lib/mysql/${DB_NAME}
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_USER: ${DB_USERNAME}
+    networks:
+      - internal
+
+  rib_redis:
+    container_name: "rib_redis"
+    image: redis:latest
+    command: redis-server --requirepass ${CACHE_PASS}
+    volumes:
+      - ./.docker/cache:/var/lib/redis
+      - ./.docker/redis:/usr/local/etc/redis/redis.conf
+    ports:
+      - ${CACHE_PORT}:6379
+    networks:
+      - internal
+
+  rib_redis-gui:
+    container_name: "rib_redis-gui"
+    image: rediscommander/redis-commander:latest
+    environment:
+      - CACHE_HOSTS=local:${CACHE_HOST}:${CACHE_PORT}:${CACHE_DB}:${CACHE_PASS}
+      - HTTP_USER=${CACHE_GUI_USER}
+      - HTTP_PASSWORD=${CACHE_GUI_PASS}
+    ports:
+      - 8081:8081
+    networks:
+      - internal
+    depends_on:
+      - rib_redis
+
+  rib_rabbitmq:
+    image: rabbitmq:management
+    container_name: "rib_rabbitmq"
+    volumes:
+     - ./.docker/queue:/var/lib/rabbitmq
+     - ./.docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/conf.d/10-defaults.conf
+     - ./.docker/logs/rabbitmq:/var/log/rabbitmq/
+    environment:
+      - RABBITMQ_DEFAULT_USER=${QUEUE_USER}
+      - RABBITMQ_DEFAULT_PASS=${QUEUE_PASS}
+      - RABBITMQ_ERLANG_COOKIE=${QUEUE_COOKIE}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - internal
+
+  rib_php82:
+    container_name: "rib_php82"
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: "./.docker/php/Dockerfile"
+    volumes:
+      - ./:/var/www/rib/
+    networks:
+      - internal
+    depends_on:
+      - rib_nginx
+      - rib_mariadb
+      - rib_redis
+      - rib_rabbitmq
+
+networks:
+  internal:
+    driver: bridge
