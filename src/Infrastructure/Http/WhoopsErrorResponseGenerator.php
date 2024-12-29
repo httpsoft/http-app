@@ -30,7 +30,7 @@ final class WhoopsErrorResponseGenerator implements ErrorResponseGeneratorInterf
     /**
      * @param RunInterface|null $whoops
      */
-    public function __construct(RunInterface $whoops = null)
+    public function __construct(?RunInterface $whoops = null)
     {
         if ($whoops instanceof RunInterface) {
             $this->whoops = $whoops;
