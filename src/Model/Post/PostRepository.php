@@ -18,7 +18,7 @@ final class PostRepository
     /**
      * @param array<int, Post>|null $posts
      */
-    public function __construct(array $posts = null)
+    public function __construct(?array $posts = null)
     {
         $this->posts = $posts ?? [
             1 => new Post(1, 'Post #1', new DateTimeImmutable('+1 day')),
