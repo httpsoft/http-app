@@ -1,5 +1,11 @@
 # HTTP App Change Log
 
+## 1.1.1 - 2024.12.30
+
+### Fixed
+
+- [#7](https://github.com/httpsoft/http-app/pull/7) Fixes compatibility for PHP 8.4`.
+
 ## 1.1.0 - 2023.05.05
 
 ### Changed
